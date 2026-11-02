@@ -2,7 +2,7 @@ from datetime import datetime
 from decimal import Decimal
 from enum import StrEnum
 
-from pydantic import BaseModel, ConfigDict, EmailStr
+from pydantic import BaseModel, ConfigDict, EmailStr, Field
 
 
 class ORMModel(BaseModel):
@@ -43,3 +43,20 @@ class VoucherOut(BaseModel):
     expires_at: datetime
     redeemed_at: datetime | None
     offer: OfferOut
+
+
+class LoginRequest(BaseModel):
+    login: str = Field(min_length=1, max_length=100)
+    password: str = Field(min_length=1, max_length=200)
+
+
+class TokenResponse(BaseModel):
+    access_token: str
+    token_type: str = "bearer"
+    expires_at: datetime
+
+
+class PartnerMe(ORMModel):
+    id: int
+    name: str
+    login: str

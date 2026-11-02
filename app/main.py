@@ -4,7 +4,7 @@ from sqlalchemy import text
 
 from app.db import DbSession
 from app.errors import DomainError
-from app.routers import customer
+from app.routers import customer, partner
 
 app = FastAPI(
     title="VoucherHub API",
@@ -13,11 +13,16 @@ app = FastAPI(
 )
 
 app.include_router(customer.router)
+app.include_router(partner.router)
 
 
 @app.exception_handler(DomainError)
 def handle_domain_error(request: Request, exc: DomainError) -> JSONResponse:
-    return JSONResponse(status_code=exc.status_code, content={"detail": exc.message, "code": exc.code})
+    return JSONResponse(
+        status_code=exc.status_code,
+        content={"detail": exc.message, "code": exc.code},
+        headers=exc.headers,
+    )
 
 
 @app.get("/health", tags=["system"])
