@@ -17,6 +17,12 @@ class OfferNotAvailable(DomainError):
     message = "Oferta nie istnieje lub nie jest dostępna"
 
 
+class OfferNotFound(DomainError):
+    status_code = 404
+    code = "OFFER_NOT_FOUND"
+    message = "Oferta nie istnieje"
+
+
 class VoucherNotFound(DomainError):
     status_code = 404
     code = "VOUCHER_NOT_FOUND"

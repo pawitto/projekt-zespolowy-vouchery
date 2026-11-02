@@ -60,3 +60,30 @@ class PartnerMe(ORMModel):
     id: int
     name: str
     login: str
+
+
+class PartnerOfferOut(ORMModel):
+    """Oferta widziana przez partnera: z polem active i datą utworzenia."""
+
+    id: int
+    name: str
+    description: str
+    price: Decimal
+    validity_days: int
+    active: bool
+    created_at: datetime
+
+
+class OfferCreate(BaseModel):
+    model_config = ConfigDict(str_strip_whitespace=True)
+
+    name: str = Field(min_length=1, max_length=200)
+    description: str = Field(min_length=1, max_length=5000)
+    price: Decimal = Field(gt=0, max_digits=10, decimal_places=2)
+    validity_days: int = Field(gt=0, le=3650)
+
+
+class OfferStatusUpdate(BaseModel):
+    model_config = ConfigDict(extra="forbid")  # reguła 10: zmieniamy tylko status
+
+    active: bool
