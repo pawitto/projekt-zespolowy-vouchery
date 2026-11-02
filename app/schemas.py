@@ -87,3 +87,21 @@ class OfferStatusUpdate(BaseModel):
     model_config = ConfigDict(extra="forbid")  # reguła 10: zmieniamy tylko status
 
     active: bool
+
+
+class VoucherOfferInfo(ORMModel):
+    """Na co jest voucher: to widzi recepcja po wpisaniu kodu."""
+
+    id: int
+    name: str
+    description: str
+
+
+class PartnerVoucherOut(BaseModel):
+    code: str
+    status: VoucherDisplayStatus
+    price_paid: Decimal
+    purchased_at: datetime
+    expires_at: datetime
+    redeemed_at: datetime | None
+    offer: VoucherOfferInfo

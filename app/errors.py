@@ -29,6 +29,18 @@ class VoucherNotFound(DomainError):
     message = "Voucher o podanym kodzie nie istnieje"
 
 
+class VoucherAlreadyUsed(DomainError):
+    status_code = 409
+    code = "VOUCHER_ALREADY_USED"
+    message = "Voucher został już wykorzystany"
+
+
+class VoucherExpired(DomainError):
+    status_code = 409
+    code = "VOUCHER_EXPIRED"
+    message = "Voucher stracił ważność"
+
+
 _BEARER = {"WWW-Authenticate": "Bearer"}
 
 

@@ -1,11 +1,11 @@
 import secrets
 from datetime import UTC, datetime, timedelta
 
-from sqlalchemy import select
-from sqlalchemy.orm import Session, joinedload
+from sqlalchemy import Select, select
+from sqlalchemy.orm import Session, contains_eager, joinedload
 
-from app.errors import VoucherNotFound
-from app.models import Offer, Voucher, VoucherStatus
+from app.errors import VoucherAlreadyUsed, VoucherExpired, VoucherNotFound
+from app.models import Offer, Partner, Voucher, VoucherStatus
 from app.schemas import VoucherDisplayStatus
 from app.services import offers as offer_service
 
@@ -66,3 +66,38 @@ def _unique_code(db: Session) -> str:
         if db.scalar(select(Voucher.id).where(Voucher.code == code)) is None:
             return code
     raise RuntimeError("Nie udało się wygenerować unikalnego kodu")
+
+
+def _partner_vouchers(partner: Partner) -> Select[tuple[Voucher]]:
+    """Vouchery do ofert danego partnera (reguła 8)."""
+    return (
+        select(Voucher)
+        .join(Voucher.offer)
+        .where(Offer.partner_id == partner.id)
+        .options(contains_eager(Voucher.offer))
+    )
+
+
+def list_for_partner(db: Session, partner: Partner) -> list[Voucher]:
+    return list(db.scalars(_partner_vouchers(partner).order_by(Voucher.purchased_at.desc())))
+
+
+def get_for_partner(db: Session, partner: Partner, code: str) -> Voucher:
+    voucher = db.scalar(_partner_vouchers(partner).where(Voucher.code == normalize_code(code)))
+    if voucher is None:  # nie istnieje albo należy do innego partnera
+        raise VoucherNotFound()
+    return voucher
+
+
+def redeem(db: Session, partner: Partner, code: str) -> Voucher:
+    voucher = get_for_partner(db, partner, code)  # reguły 6 i 8
+    now = datetime.now(UTC)
+    status = display_status(voucher, now)
+    if status == VoucherDisplayStatus.USED:  # reguła 5
+        raise VoucherAlreadyUsed()
+    if status == VoucherDisplayStatus.EXPIRED:  # reguła 7
+        raise VoucherExpired()
+    voucher.status = VoucherStatus.USED
+    voucher.redeemed_at = now
+    db.commit()
+    return voucher
