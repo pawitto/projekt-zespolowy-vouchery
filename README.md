@@ -112,4 +112,10 @@ Frontend powinien rozpoznawać błąd po polu `code` (`detail` to komunikat dla 
 > **TODO:** projekt nie ma jeszcze testów automatycznych, trzeba je dodać (np. `pytest` + `TestClient` z FastAPI).
 > Na razie endpointy były sprawdzane ręcznie w Swaggerze.
 
+## CORS
+
+> **Do ustalenia z zespołem frontendu:** API nie ma jeszcze skonfigurowanego CORS.
+> Jeśli frontend będzie działał pod innym adresem/portem niż API (np. `http://localhost:5173`),
+> przeglądarka zablokuje jego zapytania. Po ustaleniu adresów frontendu dodamy `CORSMiddleware` w `app/main.py`.
+
 Koncepcja systemu: [`docs/VoucherHub_Koncepcja_systemu_v0.2_2026-10-25.pdf`](docs/VoucherHub_Koncepcja_systemu_v0.2_2026-10-25.pdf)
