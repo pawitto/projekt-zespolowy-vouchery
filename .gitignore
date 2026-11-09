@@ -5,7 +5,13 @@ build/
 dist/
 wheels/
 *.egg-info
-.env
-.vscode
+
 # Virtual environments
 .venv
+
+# Local config / secrets
+.env
+
+# IDE
+.vscode/
+.idea/
