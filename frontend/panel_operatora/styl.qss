@@ -1,0 +1,21 @@
+QMainWindow, QWidget {
+    background: #f5f7fb;
+    color: #1f2937;
+    font-family: "Segoe UI";
+    font-size: 12px;
+}
+QWidget#menu, QListWidget#nawigacja { background: #17263b; color: #e5edf7; }
+QWidget#menu { min-width: 215px; max-width: 215px; }
+QListWidget#nawigacja { border: 0; padding: 5px; }
+QListWidget#nawigacja::item { padding: 13px; border-radius: 6px; }
+QListWidget#nawigacja::item:selected { background: #304e75; color: white; }
+QLabel#logo { color: white; font-size: 23px; font-weight: bold; padding: 18px 12px; }
+QLabel#informacjaMenu { color: #aebdd1; padding: 12px; font-size: 10px; }
+QLabel#naglowekStrony { font-size: 21px; font-weight: bold; padding-bottom: 10px; }
+QTableWidget { background: white; border: 1px solid #dbe2ec; gridline-color: #e7edf5; selection-background-color: #d9e9ff; selection-color: #1f2937; }
+QHeaderView::section { background: #eaf0f7; border: 0; padding: 10px; font-weight: bold; }
+QPushButton { background: #2d6fb6; color: white; border: 0; border-radius: 5px; padding: 10px 14px; }
+QPushButton:hover { background: #20598f; }
+QComboBox { background: white; border: 1px solid #c6d2df; padding: 7px; min-height: 22px; }
+QMessageBox QLabel { background: transparent; }
+QMessageBox QPushButton { min-width: 80px; }

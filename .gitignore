@@ -15,3 +15,5 @@ wheels/
 # IDE
 .vscode/
 .idea/
+.venv/
+*.pyc

@@ -1,0 +1,1 @@
+# Moduly widokow aplikacji.
