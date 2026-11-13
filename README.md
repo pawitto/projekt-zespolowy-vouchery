@@ -115,16 +115,19 @@ Frontend powinien rozpoznawać błąd po polu `code` (`detail` to komunikat dla 
 ## Instrukcje WWW i app Py6
 Wymagania: Python 3.14, uv oraz Git.
 
-> Uruchomienie interfejsu aplikacji py6
-> cd frontend\panel_operatora
-> uv venv --python 3.14 .venv
-> uv pip install --python .\.venv\Scripts\python.exe -r requirements.txt
-> .\.venv\Scripts\python.exe main.py
+Uruchomienie interfejsu aplikacji py6
+```bash
+cd frontend\panel_operatora
+uv venv --python 3.14 .venv
+uv pip install --python .\.venv\Scripts\python.exe -r requirements.txt
+.\.venv\Scripts\python.exe main.py
+```
 
-> Uruchomienie strony WWW:
-> cd frontend\strona_www
-> python -m http.server 8080
-
+Uruchomienie strony WWW:
+```bash
+cd frontend\strona_www
+python -m http.server 8080
+```
 
 ## CORS
 
