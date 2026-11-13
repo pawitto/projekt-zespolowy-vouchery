@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>VoucherHub – katalog voucherów (demo)</title>
+    <link rel="stylesheet" href="styl.css">
+    <script defer src="sklep.js"></script>
+</head>
+<body>
+    <header class="naglowek">
+        <div class="kontener pasek">
+            <a class="logo" href="#oferty">VoucherHub</a>
+            <span class="oznaczenie">Prototyp strony WWW</span>
+        </div>
+    </header>
+    <main class="kontener">
+        <section class="wprowadzenie">
+            <p class="etykieta">Jedno miejsce, wiele usług</p>
+            <h1>Vouchery na masaże, treningi i pobyty</h1>
+            <p>Przeglądaj oferty partnerów i wybierz voucher lub gotowy pakiet. Zakup nie wymaga zakładania konta.</p>
+            <p class="uwaga">Wersja demonstracyjna: zakup i wysyłka e-mail są symulowane. Wygenerowane kody nie są zapisywane w VoucherHub.</p>
+        </section>
+        <section id="oferty" class="sekcja">
+            <div class="sekcjaNaglowek">
+                <h2>Oferty</h2>
+                <label for="filtrPartnera">Partner</label>
+                <select id="filtrPartnera">
+                    <option value="wszyscy">Wszyscy</option>
+                    <option value="A">Masaże</option>
+                    <option value="B">Fitness</option>
+                    <option value="C">Hotel</option>
+                    <option value="pakiet">Pakiety</option>
+                </select>
+            </div>
+            <div id="listaOfert" class="siatka" aria-live="polite"></div>
+        </section>
+        <section id="zakup" class="sekcja karta formularzKarta" hidden>
+            <h2>Zakup demonstracyjny</h2>
+            <p id="nazwaWybranejOferty"></p>
+            <form id="formularzZakupu">
+                <label for="emailKlienta">Adres e-mail</label>
+                <input id="emailKlienta" name="email" type="email" placeholder="klient@example.com" autocomplete="email" required>
+                <div class="akcje">
+                    <button type="submit">Potwierdź zakup (demo)</button>
+                    <button class="drugorzedny" type="button" id="anulujZakup">Wróć do ofert</button>
+                </div>
+            </form>
+        </section>
+        <section id="potwierdzenie" class="sekcja karta formularzKarta" hidden aria-live="polite">
+            <h2>Zakup demonstracyjny zakończony</h2>
+            <p>Wygenerowano poniższe kody testowe. Symulowano wysłanie wiadomości e-mail.</p>
+            <div id="kodyVoucherow" class="kody"></div>
+            <p class="uwaga">Kody demonstracyjne nie uprawniają do realizacji usług.</p>
+            <button id="nowyZakup" type="button">Wróć do katalogu</button>
+        </section>
+    </main>
+    <footer class="stopka">VoucherHub – projekt zespołowy, grupa D · wersja demonstracyjna</footer>
+</body>
+</html>

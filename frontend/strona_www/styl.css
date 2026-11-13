@@ -1,0 +1,35 @@
+:root { font-family: "Segoe UI", Arial, sans-serif; color: #17263b; background: #f4f7fb; line-height: 1.5; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+.kontener { max-width: 1120px; margin: auto; padding: 0 24px; }
+.naglowek { background: #182b43; color: white; }
+.pasek { display: flex; align-items: center; justify-content: space-between; min-height: 68px; }
+.logo { color: white; text-decoration: none; font-size: 24px; font-weight: 700; }
+.oznaczenie { color: #c6d7eb; font-size: 13px; }
+.wprowadzenie { padding: 55px 0 28px; max-width: 800px; }
+.wprowadzenie h1 { font-size: clamp(29px, 4vw, 43px); line-height: 1.12; margin: 4px 0 14px; }
+.etykieta { text-transform: uppercase; color: #286bb2; font-weight: bold; font-size: 13px; letter-spacing: 0.08em; }
+.uwaga { background: #e6eff8; border-left: 3px solid #3c7fb7; padding: 10px 14px; border-radius: 4px; font-size: 13px; }
+.sekcja { margin: 24px 0 40px; }
+.sekcjaNaglowek { display: flex; gap: 12px; align-items: center; margin-bottom: 16px; }
+.sekcjaNaglowek h2 { margin-right: auto; }
+.siatka { display: grid; grid-template-columns: repeat(auto-fit, minmax(245px, 1fr)); gap: 20px; }
+.karta { background: white; padding: 22px; border: 1px solid #dfe7f1; border-radius: 12px; box-shadow: 0 2px 8px #14263d0c; }
+.karta h3 { margin: 7px 0; font-size: 19px; }
+.partner { font-size: 12px; color: #55708f; font-weight: 700; }
+.cena { margin: 20px 0 14px; font-size: 24px; font-weight: 700; }
+.szczegoly { color: #52677e; font-size: 14px; }
+button { cursor: pointer; background: #256eaf; color: white; border: 0; border-radius: 7px; padding: 11px 17px; font: inherit; }
+button:hover { background: #155589; }
+button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid #2684d5; outline-offset: 2px; }
+button.drugorzedny { color: #265273; background: #e8eef5; }
+select, input { padding: 10px; border-radius: 6px; border: 1px solid #becbdd; font: inherit; background: white; }
+.formularzKarta { max-width: 650px; }
+.formularzKarta label { display: block; margin-bottom: 6px; }
+.formularzKarta input { width: 100%; }
+.akcje { display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
+.kody { font-family: Consolas, monospace; padding: 12px; background: #eff5fa; border-radius: 6px; overflow-wrap: anywhere; }
+.kody p { margin: 7px 0; }
+.stopka { color: #65758c; font-size: 12px; padding: 28px 24px; text-align: center; }
+[hidden] { display: none !important; }
+@media (max-width: 600px) { .sekcjaNaglowek { align-items: flex-start; flex-direction: column; } .pasek { gap: 12px; } }
