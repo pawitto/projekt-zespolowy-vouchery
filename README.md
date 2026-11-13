@@ -112,7 +112,7 @@ Frontend powinien rozpoznawać błąd po polu `code` (`detail` to komunikat dla 
 > **TODO:** projekt nie ma jeszcze testów automatycznych, trzeba je dodać (np. `pytest` + `TestClient` z FastAPI).
 > Na razie endpointy były sprawdzane ręcznie w Swaggerze.
 
-## Instrikcje WWW i apki Py6
+## Instrukcje WWW i app Py6
 Wymagania: Python 3.14, uv oraz Git.
 
 > Uruchomienie interfejsu aplikacji py6
