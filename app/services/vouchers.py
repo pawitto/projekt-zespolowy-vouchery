@@ -82,15 +82,18 @@ def list_for_partner(db: Session, partner: Partner) -> list[Voucher]:
     return list(db.scalars(_partner_vouchers(partner).order_by(Voucher.purchased_at.desc())))
 
 
-def get_for_partner(db: Session, partner: Partner, code: str) -> Voucher:
-    voucher = db.scalar(_partner_vouchers(partner).where(Voucher.code == normalize_code(code)))
+def get_for_partner(db: Session, partner: Partner, code: str, *, lock: bool = False) -> Voucher:
+    stmt = _partner_vouchers(partner).where(Voucher.code == normalize_code(code))
+    if lock:  # blokada wiersza do commita, żeby nikt nie zrealizował vouchera równocześnie
+        stmt = stmt.with_for_update(of=Voucher)
+    voucher = db.scalar(stmt)
     if voucher is None:  # nie istnieje albo należy do innego partnera
         raise VoucherNotFound()
     return voucher
 
 
 def redeem(db: Session, partner: Partner, code: str) -> Voucher:
-    voucher = get_for_partner(db, partner, code)  # reguły 6 i 8
+    voucher = get_for_partner(db, partner, code, lock=True)  # reguły 5, 6 i 8
     now = datetime.now(UTC)
     status = display_status(voucher, now)
     if status == VoucherDisplayStatus.USED:  # reguła 5
